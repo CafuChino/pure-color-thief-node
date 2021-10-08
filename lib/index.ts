@@ -27,7 +27,7 @@ class ColorThief {
     this.type = null;
   }
 
-  _getPixels(imgBuffer:Buffer): Promise<null|NdArray> {
+  private _getPixels(imgBuffer:Buffer): Promise<null|NdArray> {
     return new Promise((resolve, reject) => {
       getPixels(imgBuffer, this.type, (err:Error, pixels:NdArray ) => {
         if (err) {
@@ -38,7 +38,7 @@ class ColorThief {
     })
   }
 
-  async loadImage(image:Buffer|string, type:string|null=null) {
+  public async loadImage(image:Buffer|string, type:string|null=null) {
     this.type = type;
     if (Buffer.isBuffer(image)) {
       if (!this.type || !['image/png', 'image/jpeg', 'image/jpg'].includes(this.type)){
@@ -57,19 +57,19 @@ class ColorThief {
     }
   };
 
-  getColorPalette(colorCount:number):[number, number, number][] {
+  public getColorPalette(colorCount:number):[number, number, number][] {
     if (!this.sourceImageData) {
       throw new Error('No image loaded');
     }
-    const q = quantize(ndFlatten(this.sourceImageData), colorCount);
+    const q = quantize(ndFlatten(this.sourceImageData), Math.max(2, colorCount));
     return q.palette();
   }
 
-  getColor():[number, number, number] {
+  public getColor():[number, number, number] {
     if (!this.sourceImageData) {
       throw new Error('No image loaded');
     }
-    const palette = quantize(ndFlatten(this.sourceImageData), 1);
+    const palette = quantize(ndFlatten(this.sourceImageData), 2);
     return palette.palette()[0];
   }
 }
