@@ -1,7 +1,7 @@
 {
   "name": "pure-color-thief-node",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
@@ -15,6 +15,10 @@
     "color-extractor-node",
     "color-extractor-node-js"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CafuChino/pure-color-thief-node.git"
+  },
   "author": "CafuChino",
   "dependencies": {
     "get-pixels": "^3.3.3",

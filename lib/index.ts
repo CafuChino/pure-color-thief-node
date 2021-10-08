@@ -1,14 +1,14 @@
 const fs = require('fs');
 const quantize = require('quantize');
-var getPixels = require("get-pixels");
+const getPixels = require("get-pixels");
 import { NdArray } from 'ndarray';
 
 function ndFlatten(img:NdArray) {
   let fullArr = [];
-  for (var i = 0; i < img.shape[0]; ++i) {
-    for (var j = 0; j < img.shape[1]; ++j) {
+  for (let i = 0; i < img.shape[0]; ++i) {
+    for (let j = 0; j < img.shape[1]; ++j) {
       let t = [];
-      for (var k = 0; k < 3; ++k) {
+      for (let k = 0; k < 3; ++k) {
           t.push(img.get(i, j, k));
       }
       fullArr.push(t);
@@ -17,17 +17,16 @@ function ndFlatten(img:NdArray) {
   return fullArr;
 }
 
-
 class ColorThief {
-  
+
   sourceImageData: null | NdArray;
   type: null | string;
-  
+
   constructor() {
     this.sourceImageData = null;
     this.type = null;
   }
-  
+
   _getPixels(imgBuffer:Buffer): Promise<null|NdArray> {
     return new Promise((resolve, reject) => {
       getPixels(imgBuffer, this.type, (err:Error, pixels:NdArray ) => {
@@ -62,8 +61,8 @@ class ColorThief {
     if (!this.sourceImageData) {
       throw new Error('No image loaded');
     }
-    const palette = quantize(ndFlatten(this.sourceImageData), colorCount);
-    return palette.palette();
+    const q = quantize(ndFlatten(this.sourceImageData), colorCount);
+    return q.palette();
   }
 
   getColor():[number, number, number] {
@@ -76,3 +75,7 @@ class ColorThief {
 }
 
 export default ColorThief;
+
+export { ColorThief };
+
+module.exports = ColorThief;
