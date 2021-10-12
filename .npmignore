@@ -1,2 +1,9 @@
 # 排除 lib文件
 lib/
+.idea
+.DS_Store
+.git
+.gitignore
+.gitmodules
+.vscode
+.vscodeignore
