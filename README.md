@@ -4,7 +4,7 @@ Pure javascript version of color thief reimplementation for Node.js.
 
 The [original color thief project](https://github.com/lokesh/color-thief) relies on the browser `Canvas` object to extract pixels from images. It does not work well in Node.js environment because the `Canvas` object does not natively exist in Node.js.
 
-Another project, [Color Thief Node](Color Thief Node), however, relies on the [node-canvas library](https://github.com/Automattic/node-canvas) to simulate a `Canvas` object in Node.js environment. It involves unnecessary gyp build. Is behaves badly when a pre-build version of `node-canvas` is provided for your runtime, expecially when you need to deploy your project with docker (your image usually do not provide full gyp-build env).
+Another project, [Color Thief Node](https://www.npmjs.com/package/color-thief-node), however, relies on the [node-canvas library](https://github.com/Automattic/node-canvas) to simulate a `Canvas` object in Node.js environment. It involves unnecessary gyp build. Is behaves badly when a pre-build version of `node-canvas` is provided for your runtime, expecially when you need to deploy your project with docker (your image usually do not provide full gyp-build env).
 
 However, canvas is only used to get the pixel information of the image, which is very inefficient for Node  environment. We can use a simpler way to get the pixel color information.
 
