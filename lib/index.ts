@@ -75,7 +75,3 @@ class ColorThief {
 }
 
 export default ColorThief;
-
-export { ColorThief };
-
-module.exports = ColorThief;

@@ -10,4 +10,3 @@ declare class ColorThief {
     getColor(): [number, number, number];
 }
 export default ColorThief;
-export { ColorThief };
